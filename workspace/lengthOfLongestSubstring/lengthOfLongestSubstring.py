@@ -8,8 +8,8 @@ class Solution(object):
         3
         >>> obj.lengthOfLongestSubstring("abcabd")
         4
-        >>> obj.lengthOfLongestSubstring("kwweab")
-        4
+        >>> obj.lengthOfLongestSubstring("pwwkew")
+        3
         >>> obj.lengthOfLongestSubstring("")
         0
         >>> obj.lengthOfLongestSubstring("aa")
@@ -33,30 +33,13 @@ class Solution(object):
         start = 0
         index = 0
         cache = dict()
-        #print "c i s m"
         for char in s:
             if char in cache:
                 maxlen = max(maxlen, index-start)
-                start = cache[char]+1
-            cache[char] = index
+                # make sure next start position not less than current position
+                start = cache[char]+1 if cache[char]+1 >= start else start
 
-            #print char, index, start, maxlen
+            cache[char] = index
             index += 1
 
-        maxlen = max(maxlen, index-start)
-        return maxlen
-
-if __name__ == "__main__":
-    obj = Solution()
-    print obj.lengthOfLongestSubstring("abc")
-    print obj.lengthOfLongestSubstring("abcabd")
-    print obj.lengthOfLongestSubstring("kwweab")
-    print obj.lengthOfLongestSubstring("")
-    print obj.lengthOfLongestSubstring("aa")
-    print obj.lengthOfLongestSubstring("aaa")
-    print obj.lengthOfLongestSubstring("bdb")
-    print obj.lengthOfLongestSubstring("c")
-    print obj.lengthOfLongestSubstring("au")
-    print obj.lengthOfLongestSubstring("abba")
-    print obj.lengthOfLongestSubstring("tmmzuxt")
-
+        return max(maxlen, index-start)
