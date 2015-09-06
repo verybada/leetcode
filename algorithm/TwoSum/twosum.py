@@ -14,13 +14,17 @@ class Solution(object):
         [1, 4]
         """
 
+        # Create hash, Key = offset(target-n), Value = list index
         hash = dict()
         for index in xrange(0, len(nums)):
+            # Get value and calculate offset
             n = nums[index]
             offset = target - n
+            # Check is anyone need me
             if n in hash and hash[n] != index:
                 return [hash[n]+1, index+1]
                 break
+            # No one needs me. push myself into hash
             hash[offset] = nums.index(n)
 
         raise Exception()
