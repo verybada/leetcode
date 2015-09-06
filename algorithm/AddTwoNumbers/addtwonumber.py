@@ -23,6 +23,7 @@ class Solution(object):
         :return A node or None
         :rtype ListNode or None
         """
+        # Just return carry if there is no more nodes
         if node1 is None and node2 is None:
             if carry != 0:
                 return ListNode(carry)
