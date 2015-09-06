@@ -30,15 +30,21 @@ class Solution(object):
         5
         """
         maxlen = 0
+        # the variable which keeps our start position, it will be reset after we get duplicated character
         start = 0
+        # the variable which keeps current index
         index = 0
+        # create cache, Key is char, Value is index of this char
         cache = dict()
         for char in s:
+            # if this character is occupied, means the longest distance is (current position - start position)
             if char in cache:
+                # get longest
                 maxlen = max(maxlen, index-start)
                 # make sure next start position not less than current position
                 start = cache[char]+1 if cache[char]+1 >= start else start
 
+            # put into cache
             cache[char] = index
             index += 1
 
