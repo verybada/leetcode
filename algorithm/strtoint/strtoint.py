@@ -1,6 +1,3 @@
-import re
-
-
 class Solution(object):
     def myAtoi(self, _str):
         """
