@@ -1,0 +1,31 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def _walk(self, node, sum_):
+        if node.right:
+            sum_ = self._walk(node.right, sum_)
+           
+        old_val = node.val
+        node.val += sum_    
+        sum_ += old_val
+        
+        if node.left:
+            sum_ = self._walk(node.left, sum_)
+        return sum_
+            
+    def convertBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if not root:
+            return root
+        
+        self._walk(root, 0)
+        return root
+        
