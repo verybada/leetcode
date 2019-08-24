@@ -1,25 +1,23 @@
 package missingNumber
 
-import (
-    "sort"
-)
+import ()
 
 func missingNumber(nums []int) int {
-    numsLen := len(nums)
-    newNums := make([]int, numsLen+1, numsLen+1)
+	numsLen := len(nums)
+	newNums := make([]int, numsLen+1, numsLen+1)
 
-    for _, value := range nums {
-        newNums[value] = 1
-    }
+	for _, value := range nums {
+		newNums[value] = 1
+	}
 
-    for index, value := range newNums {
-        if value == 0 {
-            return index
-        }
-    }
+	for index, value := range newNums {
+		if value == 0 {
+			return index
+		}
+	}
 
-    // should not be here
-    return -1
+	// should not be here
+	return -1
 }
 
 /*
