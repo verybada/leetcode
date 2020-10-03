@@ -15,7 +15,7 @@ func findAndReplacePattern(words []string, pattern string) []string {
 
 func convertPattern(str string) []int {
 	pattern := make([]int, 0, len(str))
-	maxValue := 0
+	count := 0
 	cache := make(map[rune]int)
 	for _, char := range str {
 		value, ok := cache[char]
@@ -24,9 +24,8 @@ func convertPattern(str string) []int {
 			continue
 		}
 
-		value = maxValue
-		cache[char] = value
-		pattern = append(pattern, value)
+		cache[char] = count
+		pattern = append(pattern, count)
 		count++
 	}
 
@@ -38,14 +37,14 @@ func compare(str string, pattern []int) bool {
 		return false
 	}
 
-	maxValue := 0
+	count := 0
 	cache := make(map[rune]int)
 	for index, char := range str {
 		value, ok := cache[char]
 		if !ok {
-			cache[char] = maxValue
-			value = maxValue
-			maxValue++
+			cache[char] = count
+			value = count
+			count++
 		}
 
 		if pattern[index] != value {
